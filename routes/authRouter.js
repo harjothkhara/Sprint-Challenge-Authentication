@@ -2,6 +2,7 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const db = require("../database/helpers/user-model.js");
+const secret = process.env.SECRET || "It's a secret";
 
 //register
 router.post("/register", async (req, res) => {
@@ -13,7 +14,8 @@ router.post("/register", async (req, res) => {
         try {
             const newUser = await db.create({ username, password });
             if (newUser) {
-                res.status(201).json(newUser);
+                const token = generateToken(newUser.id, username);
+                res.status(201).json({ message: `Welcome ${username}`, token });
             }
         } catch (error) {
             res.status(500).json({ message: `Your user could not be created ${error}.` });
