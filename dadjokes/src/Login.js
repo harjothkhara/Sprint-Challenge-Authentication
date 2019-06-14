@@ -10,6 +10,7 @@ class Login extends Component {
      };
 
      handleInputChange = e => {
+        e.persist(); 
         this.setState(prevState => ({
             user: {
                 ...prevState.user,
