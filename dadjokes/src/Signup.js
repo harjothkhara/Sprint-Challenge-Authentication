@@ -20,7 +20,7 @@ class Signup extends Component {
 
      submitInfo = info => {
         axios
-            .post("http://localhost:5000/auth/register", info)
+            .post("http://localhost:3300/api/auth/register", info)
             .then(res => {
                 localStorage.setItem("token", res.data.token)
             })

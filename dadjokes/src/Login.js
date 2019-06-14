@@ -20,7 +20,7 @@ class Login extends Component {
 
     submitInfo = info => {
         axios
-            .post("http://localhost:5000/auth/login", info)
+            .post("http://localhost:3300/api/auth/login", info)
             .then(res => {
                 localStorage.setItem("token", res.data.token)
             })
